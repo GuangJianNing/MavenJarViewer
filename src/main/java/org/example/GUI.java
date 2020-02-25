@@ -57,7 +57,7 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 String text = jarNameTextInput.getText();
                 List<String> globalList = dataModel.getGlobalJarNameList();
-                List<String> filteredStringList = globalList.parallelStream().filter(str -> str.contains(text)).collect(Collectors.toList());
+                List<String> filteredStringList = globalList.parallelStream().filter(str -> str.contains(text.toLowerCase())).collect(Collectors.toList());
                 dataModel.updateTableData(filteredStringList);
                 JTable table = guiManager.getTableCache("table");
                 table.updateUI();
