@@ -125,14 +125,9 @@ public class DataDao {
      * @return List contain jars' names from repository
      */
     protected List<String> getJarData(){
-        if (null==this.repositoryPath){
-            jarNameList.add("还未设置路径，暂无数据");
-        }else {
-            jarNameList.remove(0);
+        if (null!=this.repositoryPath){
             File file=this.getFile(this.repositoryPath);
             this.getJar2(jarNameList,file);
-
-
         }
         return jarNameList;
 
