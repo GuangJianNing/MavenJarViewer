@@ -21,15 +21,15 @@ import java.util.List;
  */
 
 public class DataDao {
-    private List<String> globalList;
-    private String repositoryPath="D:\\maven\\repository";
+    private List<String> jarNameList=new ArrayList<>();
+    private String repositoryPath;
 
     public void setRepositoryPath(String repositoryPath) {
         this.repositoryPath = repositoryPath;
     }
 
-    public List<String> getGlobalList() {
-        return globalList;
+    public List<String> getJarNameList() {
+        return jarNameList;
     }
 
     /**
@@ -125,11 +125,17 @@ public class DataDao {
      * @return List contain jars' names from repository
      */
     protected List<String> getJarData(){
-        List<String> data=new ArrayList<>();
-        File file=this.getFile(this.repositoryPath);
-        this.getJar2(data,file);
-        this.globalList=data;
-        return data;
+        if (null==this.repositoryPath){
+            jarNameList.add("还未设置路径，暂无数据");
+        }else {
+            jarNameList.remove(0);
+            File file=this.getFile(this.repositoryPath);
+            this.getJar2(jarNameList,file);
+
+
+        }
+        return jarNameList;
+
     }
 
     /**
