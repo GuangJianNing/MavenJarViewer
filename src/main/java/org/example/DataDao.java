@@ -21,7 +21,8 @@ import java.util.List;
  */
 
 public class DataDao {
-    private List<String> jarNameList=new ArrayList<>();
+
+    private List<String> jarNameList=new ArrayList<>(500);//根据程序统计得出一般jar包得出jar文件个数大概在500+
     private String repositoryPath;
 
     public void setRepositoryPath(String repositoryPath) {
@@ -126,6 +127,9 @@ public class DataDao {
      */
     protected List<String> getJarData(){
         if (null!=this.repositoryPath){
+            if (!jarNameList.isEmpty()){//多次点击设置路径的确定按钮，防止list数据不停追加
+                jarNameList.clear();
+            }
             File file=this.getFile(this.repositoryPath);
             this.getJar2(jarNameList,file);
         }
