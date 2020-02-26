@@ -1,4 +1,7 @@
-package org.example;
+package org.example.ui;
+
+import org.example.ui.modelCache.GuiManager;
+import org.example.model.DataModel;
 
 import javax.swing.*;
 import java.awt.*;

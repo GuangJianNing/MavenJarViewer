@@ -1,4 +1,4 @@
-package org.example;
+package org.example.ui.modelCache;
 
 import javax.swing.*;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.observe;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -116,7 +116,7 @@ public class DataDao {
      * @return
      * @throws NullPointerException
      */
-    protected File getFile(String pathName) throws NullPointerException {
+    public File getFile(String pathName) throws NullPointerException {
         File file = new File(pathName);
         return file.exists() ? file : null;
     }

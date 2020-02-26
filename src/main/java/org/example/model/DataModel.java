@@ -1,4 +1,6 @@
-package org.example;
+package org.example.model;
+
+import org.example.observe.DataDao;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
