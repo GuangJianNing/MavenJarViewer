@@ -1,11 +1,11 @@
-package org.example.model;
+package org.example.observe;
 
-import org.example.observe.DataDao;
+import org.example.dao.DataDao;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class DataModel extends AbstractTableModel {
+public class DataModel extends AbstractTableModel  {
     private String[] columnNames = {"序号", "jar名称"};
     private DataDao dataDao;
     private Object[][] tableData;
@@ -84,4 +84,6 @@ public class DataModel extends AbstractTableModel {
     public DataDao getDataDao() {
         return dataDao;
     }
+
+
 }

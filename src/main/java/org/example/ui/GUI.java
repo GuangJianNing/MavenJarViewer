@@ -1,7 +1,8 @@
 package org.example.ui;
 
+import org.example.subject.PathSubject;
 import org.example.ui.modelCache.GuiManager;
-import org.example.model.DataModel;
+import org.example.observe.DataModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class GUI {
     private GuiManager guiManager = new GuiManager();
     private DataModel dataModel = new DataModel();
-
+    private  PathSubject pathSubject =new PathSubject();
     private JFrame frame;
     private JTextField jarNameTextInput;
     private JTextField repositoryPathInput;
@@ -23,6 +24,7 @@ public class GUI {
     private JPanel jPanel;
     private JScrollPane jScrollPane;
     private JLabel pathLabel,jarNameTipLabel;
+
 
     public GUI(){
         this.graphGui();
@@ -71,9 +73,12 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String pathText = repositoryPathInput.getText();
-                dataModel.getDataDao().setRepositoryPath(pathText);
+                pathSubject.setState(pathText);
+                pathSubject.notifyObservers();
+//                dataModel.getDataDao().setRepositoryPath(pathText);
                 try {
                     dataModel.updateTableData();
+
                 } catch (NullPointerException ex) {
                     JOptionPane.showMessageDialog(null,"可能路径有误","错误提示",1);
                     System.out.println(ex);
@@ -91,7 +96,6 @@ public class GUI {
 
     private void initJTable() {
         this.table = new JTable(this.dataModel);
-
         table.setRowHeight(30);
         table.setFont(new Font("微软雅黑", Font.PLAIN, 20));
         guiManager.setTableCache("table", table);
@@ -128,6 +132,7 @@ public class GUI {
 
 
     public void graphGui() {
+        this.pathSubject.addObserve(dataModel.getDataDao());
         this.initUiComponents();
         this.initUI();
     }

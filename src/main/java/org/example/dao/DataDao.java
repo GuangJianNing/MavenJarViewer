@@ -1,4 +1,4 @@
-package org.example.observe;
+package org.example.dao;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
  *
  */
 
-public class DataDao {
+public class DataDao implements Observer{
 
     private List<String> jarNameList=new ArrayList<>(500);//根据程序统计得出一般jar包得出jar文件个数大概在500+
     private String repositoryPath;
@@ -166,5 +166,8 @@ public class DataDao {
     }
 
 
-
+    @Override
+    public void setState(String path) {
+        this.setRepositoryPath(path);
+    }
 }
