@@ -31,7 +31,7 @@ public class PathSubject implements BaseSubject {
     @Override
     public void setState(String path) {
         this.isStateChanged=false;
-        if (null==repoPath||!(repoPath.equals(repoPath))){
+        if (null==repoPath||!(repoPath.equals(path))){
             this.repoPath=path;
             isStateChanged=true;
         }
